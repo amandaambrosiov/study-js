@@ -12,25 +12,26 @@
 
     <h2>Pilha de chamadas (FIFO e LIFO)</h2>
 
-    <p>FIFO = firts in first out - o primeiro que entrou é o primeiro a sair</p>
-    <p>LIFO = Last in first out - o ultimo a entrar é o primeiro a sair (JS normalmente é LIFO)</p>
+    <p><strong>FIFO</strong> = firts in first out - o primeiro que entrou é o primeiro a sair</p>
+    <p><strong>LIFO</strong> = Last in first out - o ultimo a entrar é o primeiro a sair </p>
+    <p><strong>(JS normalmente é LIFO)</strong></p>
 
     <script>
-    // function funcao1() {
-    //     funcao2();
-    //     console.log('executou a função 1')
-    // }
+        // function funcao1() {
+        //     funcao2();
+        //     console.log('executou a função 1')
+        // }
 
-    // function funcao2() {
-    //     funcao3();
-    //     console.log('executou a função 2')
-    // }
+        // function funcao2() {
+        //     funcao3();
+        //     console.log('executou a função 2')
+        // }
 
-    // function funcao3() {
-    //     console.log('executou a função 3')
-    // }
+        // function funcao3() {
+        //     console.log('executou a função 3')
+        // }
 
-    // funcao1();
+        // funcao1();
     </script>
 
     <hr>
@@ -38,165 +39,486 @@
     <h2>Tipos primitivos</h2>
     <p>JavaScript tem 7 tipos primitivos:</p>
     <ul>
-        <li>string</li>
-        <li>number</li>
-        <li>boolean</li>
-        <li>undefined</li>
-        <li>null</li>
-        <li>symbol</li>
-        <li>bigint</li>
+        <li><strong>string</strong> - texto</li>
+        <li><strong>number</strong> - número</li>
+        <li><strong>boolean</strong> - verdadeiro ou falso</li>
+        <li><strong>undefined</strong> - indefinido</li>
+        <li><strong>undefined</strong> - nulo</li>
+        <li><strong>symbol</strong> - criar valores, funções privadas e até mesmo para interceptar um comportamento
+            padrão de um objeto no JavaScript.</li>
+        <li><strong>bigint</strong> - números muito grandes</li>
     </ul>
 
     <script>
-    // console.log(typeof true); //Boolean
-    // console.log(typeof Boolean(true)); //Boolean
-    // console.log(typeof new Boolean(true)); //Object
-    // console.log(typeof (new Boolean(true)).valueOf()); //Boolean
-    // console.log(typeof 'Amanda'); //string
-    // console.log(typeof 21); //number
-    // console.log('Amanda'.length);
+        // console.log(typeof true); //Boolean
+        // console.log(typeof Boolean(true)); //Boolean
+        // console.log(typeof new Boolean(true)); //Object
+        // console.log(typeof (new Boolean(true)).valueOf()); //Boolean
+        // console.log(typeof 'Amanda'); //string
+        // console.log(typeof 21); //number
+        // console.log('Amanda'.length);
 
-    // let doze = new Number(12);
-    // let quinze = doze + 3;
-    // console.log(quinze);
+        // let doze = new Number(12);
+        // let quinze = doze + 3;
+        // console.log(quinze);
 
-    // console.log(typeof doze); //object
-    // console.log(typeof quinze); //number
+        // console.log(typeof doze); //object
+        // console.log(typeof quinze); //number
     </script>
 
     <hr>
 
-    <h2>Tipos de valores e tipos de referencias</h2>
+    <h2>Tipos de valores e tipos de referências</h2>
 
     <p>Primitivos → Copiados por VALOR</p>
 
+    <p>Cada variável guarda seu próprio valor. <br>
+        Não existe ligação entre elas. <br>
+        Alterar uma não altera a outra. <br>
+        <strong>Isso é cópia por valor.</strong>
+    </p>
+
     <script>
-    // let c = 10;
-    // let b = c;
+        // Quando você faz:
+        // let c = 10;
+        // let b = c;
 
-    // b = 20;
+        // O que acontece na memória ?
+        // c → 10
+        // b → 10(cópia independente)
 
-    // console.log(c); // 10
+        // b = 20;
 
-    // console.log(x, y); //20 10
+        // Depois:
 
-    // let x =  {valor: 10 };
-    // let y = x;
-    // x.valor = 20;
+        // b → 20
+        // c → 10 (não muda)
 
-    // console.log(x, y); //20 20
+        // console.log(c); // 10
     </script>
 
     <p>Referência → Copiados por REFERÊNCIA</p>
-    <small>Objetos, arrays e funções.</small>
+    <p>
+        Objetos { } <br>
+        Arrays [ ] <br>
+        Funções function()
+    </p>
 
     <script>
-    // let obj1 = { nome: "Amanda" };
-    // let obj2 = obj1;
+        // console.log(x, y); //20 10
 
-    // obj2.nome = "Maria";
+        // let x =  {valor: 10 };
+        // let y = x;
+        // x.valor = 20;
 
-    // console.log(obj1.nome); // Maria
+        // console.log(x, y); //20 20
+
+        // Agora o que acontece na memória?
+
+        // x → endereço 0x001
+        // y → endereço 0x001
+
+        // Ambos apontam para o mesmo objeto na memória.
+
+        // Quando você altera:
+
+        // x.valor = 20;
+
+        // Você não está mudando x.
+        // Você está mudando o conteúdo do endereço 0x001.
+
+        // Como y também aponta para esse mesmo endereço…
+
     </script>
+
+    <script>
+        // let obj1 = { nome: "Amanda" };
+        // let obj2 = obj1;
+
+        // obj2.nome = "Maria";
+
+        // console.log(obj1.nome); // Maria
+
+        // Porque agora você mudou a referência, não o conteúdo.
+
+        // Antes:
+
+        // obj1 → 0x001
+        // obj2 → 0x001
+
+        // Depois:
+
+        // obj2 → 0x002
+        // obj1 → 0x001
+
+        // São objetos diferentes agora.
+    </script>
+
+    <script>
+        // Comparação direta
+        // let a = 10;
+        // let b = 10;
+
+        // console.log(a === b); // true
+
+        // Primitivos com mesmo valor → iguais.
+
+        // Agora:
+
+        // let obj1 = { nome: "Amanda" };
+        // let obj2 = { nome: "Amanda" };
+
+        // console.log(obj1 === obj2); // false
+
+        // Mesmo conteúdo.
+        // Mas referências diferentes.
+    </script>
+
     <hr>
 
     <h2>COERÇÃO - Implícito, Explicito e chamada de métodos</h2>
 
-    <p>Coerção Implícita - O JS converte automaticamente</p>
+    <p>Coerção de tipo é quando o JavaScript converte automaticamente (ou você força) um valor de um tipo para outro.
+    </p>
+
+    <p>Coerção Implícita (automática) - O JavaScript decide converter sozinho.</p>
+
+    <p>Quando existe + e um dos lados é string → o JS converte tudo para string.</p>
+
+    <p>O operador - só funciona com número.</p>
 
     <script>
-    // "5" + 1 // "51"
-    // "5" - 1 // 4
+        // "5" + 1 // "51"
+        // "5" - 1 // 4
     </script>
-
-    <p>Coerção Explícita - Você força a conversão</p>
 
     <script>
-    // Number("5")
-    // String(10)
-    // Boolean(0)
+        // console.log('5' - 5); // 0
+        // console.log('5' + 5); // "55"
+        // console.log(true + 1); // 2
+        // console.log(true + true); // 2
     </script>
+
+    <script>
+        // console.log([] + {}); //"[object Object]"
+    </script>
+
+    <p>
+        O que acontece? <br>
+        [] vira "" <br>
+        {} vira "[object Object]" <br>
+        String + string → concatena
+    </p>
+
+    <p>Operadores que forçam coerção implícita</p>
+
+    <p>Unary Plus</p>
+
+    <p>Equivalente a: Number('5')</p>
+
+    <p>String vazia</p>
+
+    <p>console.log(5 + ''); // "5"</p>
+
+    <p>Operadores lógicos</p>
+
+    <p>console.log(123 && 'oi'); // "oi"</p>
+
+    <p>
+        && retorna o último valor verdadeiro. <br>
+        123 é truthy <br>
+        Então retorna 'oi'
+    </p>
+
+    <p>console.log(null || true); // true</p>
+
+    <p>null é falsy.
+        Então retorna o próximo valor.</p>
+
+    <script>
+        // console.log(+'5'); // 5
+    </script>
+
+    <p>Coerção Explícita (você controla) - Aqui você decide converter.</p>
+
+    <p>Converter para número</p>
+
+    <script>
+        // Number('50') // 50
+        // parseInt('50')
+        // parseFloat('50.5')
+    </script>
+
+    <p>Converter para string</p>
+
+    <script>
+        // String(50)
+        //     (50).toString()
+    </script>
+
+    <script>
+        // Number("5")
+        // String(10)
+        // Boolean(0)
+    </script>
+
+    <p>Converter para boolean</p>
+
+    <script>
+        // Boolean(0) // false
+        // Boolean(1) // true
+        // Boolean("") // false
+        // Boolean("Amanda") // true
+    </script>
+
+    <p>Existem apenas 7 valores falsy:</p>
+
+    <p>false <br>
+        0 <br>
+        -0 <br>
+        "" <br>
+        null <br>
+        undefined <br>
+        NaN</p>
 
     <p>Chamada de métodos</p>
 
     <p>EX. "amanda".toUpperCase() -> O JS cria temporariamente um objeto String wrapper.</p>
+    <p>JS cria objeto temporário</p>
 
     <script>
-    // console.log('5' - 5);
-    // console.log('5' + 5);
-    // console.log(true + 1);
-    // console.log(true + true);
-    // console.log([] + {});
-    // console.log([] + []);
+        // let nome = "Amanda";
+        // nome.length;
 
-    // IMPLICITO 
-    // console.log(+'5');
-    // console.log(5 + '');
-    // console.log(123 && 'oi');
-    // console.log( null || true);
+        // new String("amanda")
+    </script>
 
-    // EXPLICITO
-    // console.log(Number('50'));
-    // console.log(String(50));
+    <script>
+        // console.log('5' - 5);
+        // console.log('5' + 5);
+        // console.log(true + 1);
+        // console.log(true + true);
+        // console.log([] + {});
+        // console.log([] + []);
+
+        // IMPLICITO
+        // console.log(+'5');
+        // console.log(5 + '');
+        // console.log(123 && 'oi');
+        // console.log( null || true);
+
+        // EXPLICITO
+        // console.log(Number('50'));
+        // console.log(String(50));
     </script>
 
     <hr>
 
     <h2>==, === e typeof</h2>
 
+    <p>== (igualdade abstrata)</p>
+
+    <p>O == permite coerção de tipo antes de comparar.</p>
+
     <p>null == undefined, se for, ele retorna true</p>
     <p>number == string, se for, ele vai converter a string em numero</p>
     <p>boolean == number, se for, ele converte o boolean em numero</p>
     <p>boolean == string, se for, ele converte o string em boolean</p>
+    <p><small>
+            <p>Na verdade o JS converte boolean em número primeiro, depois compara.</p>
+        </small></p>
     <p>objeto == primitivo, se for, ele converte o objeto em string</p>
 
+
+
     <script>
-    // console.log(3 == '3');
-    // console.log(3 === 3);
+        // null == undefined // true
+        // null === undefined // false
+
+        // 3 == '3' // true
+
+        // true == 1 // true
+        // false == 0 // true
+
+        // true == "1"
+
+        // [1] == 1 // true
+        // // [1].toString() → "1"
+        // // Number("1") → 1
+
+        // [] == false // true
     </script>
 
-    <p>=== é necessário que os valores e tipos sejam iguais</p>
+    <script>
+        // console.log(3 == '3');
+        // console.log(3 === 3);
+    </script>
+
+    <p>=== (igualdade estrita)</p>
+
+    <p>Aqui NÃO existe coerção.</p>
+
+    <p>Ele compara:
+        Tipo e
+        Valor</p>
+
+    <script>
+        // 3 === '3' // false
+        // 3 === 3   // true
+    </script>
+
+    <p>typeof - Usado para descobrir o tipo.</p>
+
+    <script>
+        // typeof 10        // "number"
+        // typeof "Amanda"  // "string"
+        // typeof true      // "boolean"
+        // typeof undefined // "undefined"
+        // typeof Symbol()  // "symbol"
+        // typeof 10n       // "bigint"
+    </script>
+
+    <p>Isso é um BUG histórico do JavaScript. null não é objeto.</p>
+
+    <script>
+        typeof null // "object"
+    </script>
+
+    <script>
+        // typeof {}          // "object"
+        // typeof []          // "object"
+        // typeof function () { } // "function"
+    </script>
 
     <hr>
 
     <h2>Escopo global, de função, de bloco e léxico</h2>
 
-
     <p>Escopo global: Variáveis declaradas fora de qualquer função/bloco.</p>
-    <p>Escopo de bloco: Criado com function.</p>
+    <p>Problema: Podem ser sobrescritas, Poluem o escopo global e Em sistemas grandes isso vira caos</p>
+    <p>Escopo de bloco/função: Criado com function.</p>
+    <p>
+        Function cria escopo de função <br>
+        Bloco ({}) cria escopo de bloco quando usamos let e const
+    </p>
+
     <p>Escopo léxico: A variável é resolvida com base onde foi declarada, não onde foi chamada.</p>
-
-    <p>Escopo léxico define que a visibilidade de variáveis é determinada pelo local físico onde elas são declaradas no
-        código-fonte durante a fase de compilação, não onde são chamadas</p>
-
     <script>
-    // var nome = "Amanda";
+        // let nome = "Amanda";
 
-    // function teste() {
-    //     var variavel = "meu nome";
-    //     function teste2() {
-    //         variavel = "meu nome";
-    //     }
-    // } //erro 
+        // function externa() {
+        //     let sobrenome = "Ambrosio";
 
-    // teste();
+        //     function interna() {
+        //         console.log(nome);
+        //         console.log(sobrenome);
+        //     }
 
-    // var a = 0;
+        //     interna();
+        // }
 
-    // function alterar() {
-    //     a = 10;
-    // }
-
-    // console.log(a);
-    // alterar();
-    // console.log(a);
+        // externa();
     </script>
 
-    <p>hoisting - ele pega qualquer declação de var ele joga para o começo</p>
+    <script>
+        // var nome = "Amanda";
+
+        // function teste() {
+        //     var variavel = "meu nome";
+        //     function teste2() {
+        //         variavel = "meu nome";
+        //     }
+        // } //erro
+
+        // teste();
+
+        // var a = 0;
+
+        // function alterar() {
+        //     a = 10;
+        // }
+
+        // console.log(a);
+        // alterar();
+        // console.log(a);
+    </script>
+
+    <p>
+        <strong>O que é Hoisting?</strong> <br>
+        Durante a fase de criação do código, o JavaScript: <br>
+        Move declarações para o topo do escopo <br>
+        NÃO move inicializações
+    </p>
+
+    <script>
+        // console.log(a);
+        // var a = 10; //undefined
+    </script>
+
+    <p>Porque existe algo chamado:
+
+        👉 Temporal Dead Zone (TDZ)</p>
+
+    <p>A variável existe, mas não pode ser acessada antes da declaração.</p>
+
+    <script>
+        // console.log(b);
+        // let b = 20; //ReferenceError
+    </script>
+
+    <p>Conceito -> O que faz</p>
+
+    <p>Global -> Variável acessível em todo código</p>
+
+    <p>Função -> Criado por function</p>
+
+    <p>Bloco -> Criado por {} com let/const</p>
+
+    <p>Léxico -> Resolvido onde foi declarado</p>
+
+    <p>Hoisting -> Declarações são movidas para o topo</p>
 
     <hr>
 
     <h2>Expressão e declaração</h2>
+
+    <p>Expressão vs Declaração impacta: <br>
+        Hoisting <br>
+        Funções <br>
+        Arrow functions <br>
+        IIFE <br>
+        Callbacks <br>
+        React <br>
+        Programação funcional</p>
+
+    <p><strong>O que é uma Expressão?</strong></p>
+
+    <p>Expressão é qualquer coisa que produz um valor.</p>
+
+    <script>
+        // 2 + 2
+        // "a" + "b"
+        // true
+        // Math.random()
+    </script>
+
+    <p><strong>O que é uma Declaração (Statement)?</strong></p>
+
+    <p>É uma instrução que executa algo.</p>
+
+    <script>
+        // if (true) { }
+        // for (...) { }
+        // while (...) { }
+        // var x = 10;
+        // function teste() { }
+    </script>
+
+    <p>Você não pode fazer:</p>
+
+    <script>
+        // let x = if (true) { 10 };
+    </script>
 
     <p>Em programação, expressões são trechos de código que retornam um valor (como 2 + 2), enquanto declarações
         (statements) são instruções que realizam ações ou alteram o estado do programa (como if, for ou int x;). </p>
@@ -205,26 +527,26 @@
         retornar algo.</p>
 
     <script>
-    // console.log(1 + 1);
-    // console.log(Math.random() + 5); //expressão
+        // console.log(1 + 1);
+        // console.log(Math.random() + 5); //expressão
 
-    // function expressao () {
-    //     return 1 + 1;
-    // }
+        // function expressao () {
+        //     return 1 + 1;
+        // }
 
-    // console.log(expressao());
+        // console.log(expressao());
 
-    // var variavel = 20;
+        // var variavel = 20;
 
-    // if (true) {
-    //     variavel = 30;
-    // }
+        // if (true) {
+        //     variavel = 30;
+        // }
 
-    // function soma (a) {
-    //     return a + 10;
-    // }
+        // function soma (a) {
+        //     return a + 10;
+        // }
 
-    // console.log(Math.random());
+        // console.log(Math.random());
     </script>
 
     <hr>
@@ -234,36 +556,36 @@
     <p>Expressão de função imediatamente invocada</p>
 
     <script>
-    // function alerta() {
-    //     alert("Olá mundo!")
-    // }
+        // function alerta() {
+        //     alert("Olá mundo!")
+        // }
 
-    // const alerta = function() {
-    //     alert("Olá mundo!")
-    // }
+        // const alerta = function() {
+        //     alert("Olá mundo!")
+        // }
 
-    // alerta();
+        // alerta();
 
-    // !function() { //Pemite uma função sem o nome
-    //     alert("Olá mundo!")
-    // }(); //IIFE - função só pode ser executada apenas uma vez
+        // !function() { //Pemite uma função sem o nome
+        //     alert("Olá mundo!")
+        // }(); //IIFE - função só pode ser executada apenas uma vez
 
-    // (function(){
-    //     alert('Olá!');
-    // })
+        // (function(){
+        //     alert('Olá!');
+        // })
 
-    // var dados = (function() {
-    //     var contador = 0;
-    //     return {
-    //         incrementar: function() {
-    //             contador = contador + 1;
-    //             return contador;
-    //         }
-    //     }
-    // }());
+        // var dados = (function() {
+        //     var contador = 0;
+        //     return {
+        //         incrementar: function() {
+        //             contador = contador + 1;
+        //             return contador;
+        //         }
+        //     }
+        // }());
 
-    // console.log(dados.incrementar());
-    // console.log(dados.contador);
+        // console.log(dados.incrementar());
+        // console.log(dados.contador);
     </script>
 
     <p>uma função criada dentro de um objeto é um metodo</p>
