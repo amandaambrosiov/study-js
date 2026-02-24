@@ -15,23 +15,23 @@
     <p>FIFO = firts in first out - o primeiro que entrou é o primeiro a sair</p>
     <p>LIFO = Last in first out - o ultimo a entrar é o primeiro a sair (JS normalmente é LIFO)</p>
 
-    <code>
-    function funcao1() {
-        funcao2();
-        console.log('executou a função 1')
-    }
+    <script>
+    // function funcao1() {
+    //     funcao2();
+    //     console.log('executou a função 1')
+    // }
 
-    function funcao2() {
-        funcao3();
-        console.log('executou a função 2')
-    }
+    // function funcao2() {
+    //     funcao3();
+    //     console.log('executou a função 2')
+    // }
 
-    function funcao3() {
-        console.log('executou a função 3')
-    }
+    // function funcao3() {
+    //     console.log('executou a função 3')
+    // }
 
-    funcao1();
-    </code>
+    // funcao1();
+    </script>
 
     <hr>
 
@@ -47,67 +47,98 @@
         <li>bigint</li>
     </ul>
 
-    <code>
-    console.log(typeof true); //Boolean
-    console.log(typeof Boolean(true)); //Boolean
-    console.log(typeof new Boolean(true)); //Object
-    console.log(typeof (new Boolean(true)).valueOf()); //Boolean
-    console.log(typeof 'Amanda'); //string
-    console.log(typeof 21); //number
-    console.log('Amanda'.length);
+    <script>
+    // console.log(typeof true); //Boolean
+    // console.log(typeof Boolean(true)); //Boolean
+    // console.log(typeof new Boolean(true)); //Object
+    // console.log(typeof (new Boolean(true)).valueOf()); //Boolean
+    // console.log(typeof 'Amanda'); //string
+    // console.log(typeof 21); //number
+    // console.log('Amanda'.length);
 
-    let doze = new Number(12);
-    let quinze = doze + 3;
-    console.log(quinze);
+    // let doze = new Number(12);
+    // let quinze = doze + 3;
+    // console.log(quinze);
 
-    console.log(typeof doze); //object
-    console.log(typeof quinze); //number
-    </code>
+    // console.log(typeof doze); //object
+    // console.log(typeof quinze); //number
+    </script>
+
     <hr>
 
     <h2>Tipos de valores e tipos de referencias</h2>
+
     <p>Primitivos → Copiados por VALOR</p>
 
     <script>
-        let a = 10;
-        let b = a;
+    // let c = 10;
+    // let b = c;
 
-        b = 20;
+    // b = 20;
 
-        console.log(a); // 10
+    // console.log(c); // 10
+
+    // console.log(x, y); //20 10
+
+    // let x =  {valor: 10 };
+    // let y = x;
+    // x.valor = 20;
+
+    // console.log(x, y); //20 20
     </script>
 
     <p>Referência → Copiados por REFERÊNCIA</p>
     <small>Objetos, arrays e funções.</small>
 
     <script>
-        let obj1 = { nome: "Amanda" };
-        let obj2 = obj1;
+    // let obj1 = { nome: "Amanda" };
+    // let obj2 = obj1;
 
-        obj2.nome = "Maria";
+    // obj2.nome = "Maria";
 
-        console.log(obj1.nome); // Maria
+    // console.log(obj1.nome); // Maria
     </script>
     <hr>
 
-    <h2>Implícito, Explicito e chamada de métodos</h2>
+    <h2>COERÇÃO - Implícito, Explicito e chamada de métodos</h2>
 
     <p>Coerção Implícita - O JS converte automaticamente</p>
 
     <script>
-        "5" + 1 // "51"
-        "5" - 1 // 4
+    // "5" + 1 // "51"
+    // "5" - 1 // 4
     </script>
 
     <p>Coerção Explícita - Você força a conversão</p>
 
-    <script>Number("5")
-        String(10)
-        Boolean(0)</script>
+    <script>
+    // Number("5")
+    // String(10)
+    // Boolean(0)
+    </script>
 
     <p>Chamada de métodos</p>
 
     <p>EX. "amanda".toUpperCase() -> O JS cria temporariamente um objeto String wrapper.</p>
+
+    <script>
+    // console.log('5' - 5);
+    // console.log('5' + 5);
+    // console.log(true + 1);
+    // console.log(true + true);
+    // console.log([] + {});
+    // console.log([] + []);
+
+    // IMPLICITO 
+    // console.log(+'5');
+    // console.log(5 + '');
+    // console.log(123 && 'oi');
+    // console.log( null || true);
+
+    // EXPLICITO
+    // console.log(Number('50'));
+    // console.log(String(50));
+    </script>
 
     <hr>
 
@@ -118,6 +149,11 @@
     <p>boolean == number, se for, ele converte o boolean em numero</p>
     <p>boolean == string, se for, ele converte o string em boolean</p>
     <p>objeto == primitivo, se for, ele converte o objeto em string</p>
+
+    <script>
+    // console.log(3 == '3');
+    // console.log(3 === 3);
+    </script>
 
     <p>=== é necessário que os valores e tipos sejam iguais</p>
 
@@ -133,6 +169,29 @@
     <p>Escopo léxico define que a visibilidade de variáveis é determinada pelo local físico onde elas são declaradas no
         código-fonte durante a fase de compilação, não onde são chamadas</p>
 
+    <script>
+    // var nome = "Amanda";
+
+    // function teste() {
+    //     var variavel = "meu nome";
+    //     function teste2() {
+    //         variavel = "meu nome";
+    //     }
+    // } //erro 
+
+    // teste();
+
+    // var a = 0;
+
+    // function alterar() {
+    //     a = 10;
+    // }
+
+    // console.log(a);
+    // alterar();
+    // console.log(a);
+    </script>
+
     <p>hoisting - ele pega qualquer declação de var ele joga para o começo</p>
 
     <hr>
@@ -145,11 +204,67 @@
     <p>Expressões produzem valores e são blocos de construção, já declarações executam comandos, sem necessariamente
         retornar algo.</p>
 
+    <script>
+    // console.log(1 + 1);
+    // console.log(Math.random() + 5); //expressão
+
+    // function expressao () {
+    //     return 1 + 1;
+    // }
+
+    // console.log(expressao());
+
+    // var variavel = 20;
+
+    // if (true) {
+    //     variavel = 30;
+    // }
+
+    // function soma (a) {
+    //     return a + 10;
+    // }
+
+    // console.log(Math.random());
+    </script>
+
     <hr>
 
     <h2>IIFE e Namespaces</h2>
 
     <p>Expressão de função imediatamente invocada</p>
+
+    <script>
+    // function alerta() {
+    //     alert("Olá mundo!")
+    // }
+
+    // const alerta = function() {
+    //     alert("Olá mundo!")
+    // }
+
+    // alerta();
+
+    // !function() { //Pemite uma função sem o nome
+    //     alert("Olá mundo!")
+    // }(); //IIFE - função só pode ser executada apenas uma vez
+
+    // (function(){
+    //     alert('Olá!');
+    // })
+
+    // var dados = (function() {
+    //     var contador = 0;
+    //     return {
+    //         incrementar: function() {
+    //             contador = contador + 1;
+    //             return contador;
+    //         }
+    //     }
+    // }());
+
+    // console.log(dados.incrementar());
+    // console.log(dados.contador);
+    </script>
 
     <p>uma função criada dentro de um objeto é um metodo</p>
 
