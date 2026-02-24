@@ -8,13 +8,87 @@
 </head>
 
 <body>
-    <h1>inicio</h1>
-    <p>FIFO = firts in first out - o primeiro que entrou é o primeiro a sair</p>
-    <p>LIFO = Last in first out - o ultimo a entrar é o primeiro a sair (JS normalmente é assim)</p>
+    <h1>32 conceitos que todo desenvolvedor JavaScript deveria saber</h1>
+    <ol>
+        <li>Pilha de chamadas (FIFO e LIFO)</li>
+        <li>Tipos primitivos</li>
+        <li>Tipos de valores e tipos de referencias</li>
+        <li>Implícito, Explicito e chamada de métodos</li>
+        <li>==, === e typeof</li>
+        <li>Escopo global, de função, de bloco e léxico</li>
+        <li>Expressão e declaração</li>
+    </ol>
 
     <hr>
 
-    <h1>== e ===</h1>
+    <h2>Pilha de chamadas (FIFO e LIFO)</h2>
+
+    <p>FIFO = firts in first out - o primeiro que entrou é o primeiro a sair</p>
+    <p>LIFO = Last in first out - o ultimo a entrar é o primeiro a sair (JS normalmente é LIFO)</p>
+
+    <hr>
+
+    <h2>Tipos primitivos</h2>
+    <p>JavaScript tem 7 tipos primitivos:</p>
+    <ul>
+        <li>string</li>
+        <li>number</li>
+        <li>boolean</li>
+        <li>undefined</li>
+        <li>null</li>
+        <li>symbol</li>
+        <li>bigint</li>
+    </ul>
+    <hr>
+
+    <h2>Tipos de valores e tipos de referencias</h2>
+    <p>Primitivos → Copiados por VALOR</p>
+
+    <script>
+        let a = 10;
+        let b = a;
+
+        b = 20;
+
+        console.log(a); // 10
+    </script>
+
+    <p>Referência → Copiados por REFERÊNCIA</p>
+    <small>Objetos, arrays e funções.</small>
+
+    <script>
+        let obj1 = { nome: "Amanda" };
+        let obj2 = obj1;
+
+        obj2.nome = "Maria";
+
+        console.log(obj1.nome); // Maria
+    </script>
+    <hr>
+
+    <h2>Implícito, Explicito e chamada de métodos</h2>
+
+    <p>Coerção Implícita - O JS converte automaticamente</p>
+
+    <script>
+        "5" + 1 // "51"
+        "5" - 1 // 4
+    </script>
+
+    <p>Coerção Explícita - Você força a conversão</p>
+
+    <script>Number("5")
+        String(10)
+        Boolean(0)</script>
+
+    <p>Chamada de métodos</p>
+
+    <p>EX. "amanda".toUpperCase() -> O JS cria temporariamente um objeto String wrapper.</p>
+
+    <hr>
+
+    <h2>==, === e typeof</h2>
+
     <p>null == undefined, se for, ele retorna true</p>
     <p>number == string, se for, ele vai converter a string em numero</p>
     <p>boolean == number, se for, ele converte o boolean em numero</p>
@@ -25,21 +99,40 @@
 
     <hr>
 
-    <h1>Escopo</h1>
+    <h2>Escopo global, de função, de bloco e léxico</h2>
 
-    <p>var, let, const</p>
 
-    <p>Escopo global (todo o código)</p>
-    <p>Escopo de bloco (dentro da função)</p>
-    <p>Escopo léxico define que a visibilidade de variáveis é determinada pelo local físico onde elas são declaradas no código-fonte durante a fase de compilação, não onde são chamadas</p>
+    <p>Escopo global: Variáveis declaradas fora de qualquer função/bloco.</p>
+    <p>Escopo de bloco: Criado com function.</p>
+    <p>Escopo léxico: A variável é resolvida com base onde foi declarada, não onde foi chamada.</p>
+    
+    <p>Escopo léxico define que a visibilidade de variáveis é determinada pelo local físico onde elas são declaradas no
+        código-fonte durante a fase de compilação, não onde são chamadas</p>
 
     <p>hoisting - ele pega qualquer declação de var ele joga para o começo</p>
 
-    <h1>Expressão e declaração</h1>
+    <hr>
 
-    <p>Em programação, expressões são trechos de código que retornam um valor (como 2 + 2), enquanto declarações (statements) são instruções que realizam ações ou alteram o estado do programa (como if, for ou int x;). </p>
+    <h2>Expressão e declaração</h2>
 
-    <p>Expressões produzem valores e são blocos de construção, já declarações executam comandos, sem necessariamente retornar algo.</p>
+    <p>Em programação, expressões são trechos de código que retornam um valor (como 2 + 2), enquanto declarações
+        (statements) são instruções que realizam ações ou alteram o estado do programa (como if, for ou int x;). </p>
+
+    <p>Expressões produzem valores e são blocos de construção, já declarações executam comandos, sem necessariamente
+        retornar algo.</p>
+
+    <hr>
+
+    <h2>IIFE e Namespaces</h2>
+
+    <p>Expressão de função imediatamente invocada</p>
+
+    <p>uma função criada dentro de um objeto é um metodo</p>
+
+    <p>contador esta como uma variavel privada</p>
+
+    <p>namespaces - caso de importação de um biblioteca que ja tenha a função importar, não tem porblema se a função
+        estiver no escopo de bloco</p>
 
     <script src="script.js"></script>
 </body>

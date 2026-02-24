@@ -98,23 +98,56 @@
 
 // EXPRESSÃO E DECLARAÇÃO 
 
-console.log(1 + 1);
-console.log(Math.random() + 5); //expressão
+// console.log(1 + 1);
+// console.log(Math.random() + 5); //expressão
 
-function expressao () {
-    return 1 + 1;
-}
+// function expressao () {
+//     return 1 + 1;
+// }
 
-console.log(expressao());
+// console.log(expressao());
 
-var variavel = 20;
+// var variavel = 20;
 
-if (true) {
-    variavel = 30;
-}
+// if (true) {
+//     variavel = 30;
+// }
 
-function soma (a) {
-    return a + 10;
-}
+// function soma (a) {
+//     return a + 10;
+// }
 
-console.log(Math.random());
+// console.log(Math.random());
+
+// IIFE ------------------------------
+
+// function alerta() {
+//     alert("Olá mundo!")
+// }
+
+// const alerta = function() {
+//     alert("Olá mundo!")
+// }
+
+// alerta();
+
+// !function() { //Pemite uma função sem o nome
+//     alert("Olá mundo!")
+// }(); //IIFE - função só pode ser executada apenas uma vez
+
+(function(){
+    alert('Olá!');
+})
+
+var dados = (function() {
+    var contador = 0;
+    return {
+        incrementar: function() {
+            contador = contador + 1;
+            return contador;
+        }
+    }
+}());
+
+console.log(dados.incrementar());
+console.log(dados.contador);
