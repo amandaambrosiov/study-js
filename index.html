@@ -9,22 +9,29 @@
 
 <body>
     <h1>32 conceitos que todo desenvolvedor JavaScript deveria saber</h1>
-    <ol>
-        <li>Pilha de chamadas (FIFO e LIFO)</li>
-        <li>Tipos primitivos</li>
-        <li>Tipos de valores e tipos de referencias</li>
-        <li>Implícito, Explicito e chamada de métodos</li>
-        <li>==, === e typeof</li>
-        <li>Escopo global, de função, de bloco e léxico</li>
-        <li>Expressão e declaração</li>
-    </ol>
-
-    <hr>
 
     <h2>Pilha de chamadas (FIFO e LIFO)</h2>
 
     <p>FIFO = firts in first out - o primeiro que entrou é o primeiro a sair</p>
     <p>LIFO = Last in first out - o ultimo a entrar é o primeiro a sair (JS normalmente é LIFO)</p>
+
+    <code>
+    function funcao1() {
+        funcao2();
+        console.log('executou a função 1')
+    }
+
+    function funcao2() {
+        funcao3();
+        console.log('executou a função 2')
+    }
+
+    function funcao3() {
+        console.log('executou a função 3')
+    }
+
+    funcao1();
+    </code>
 
     <hr>
 
@@ -39,6 +46,23 @@
         <li>symbol</li>
         <li>bigint</li>
     </ul>
+
+    <code>
+    console.log(typeof true); //Boolean
+    console.log(typeof Boolean(true)); //Boolean
+    console.log(typeof new Boolean(true)); //Object
+    console.log(typeof (new Boolean(true)).valueOf()); //Boolean
+    console.log(typeof 'Amanda'); //string
+    console.log(typeof 21); //number
+    console.log('Amanda'.length);
+
+    let doze = new Number(12);
+    let quinze = doze + 3;
+    console.log(quinze);
+
+    console.log(typeof doze); //object
+    console.log(typeof quinze); //number
+    </code>
     <hr>
 
     <h2>Tipos de valores e tipos de referencias</h2>
@@ -105,7 +129,7 @@
     <p>Escopo global: Variáveis declaradas fora de qualquer função/bloco.</p>
     <p>Escopo de bloco: Criado com function.</p>
     <p>Escopo léxico: A variável é resolvida com base onde foi declarada, não onde foi chamada.</p>
-    
+
     <p>Escopo léxico define que a visibilidade de variáveis é determinada pelo local físico onde elas são declaradas no
         código-fonte durante a fase de compilação, não onde são chamadas</p>
 
