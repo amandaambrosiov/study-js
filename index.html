@@ -329,8 +329,6 @@
         </small></p>
     <p>objeto == primitivo, se for, ele converte o objeto em string</p>
 
-
-
     <script>
         // null == undefined // true
         // null === undefined // false
@@ -553,7 +551,12 @@
 
     <h2>IIFE e Namespaces</h2>
 
-    <p>Expressão de função imediatamente invocada</p>
+    <p>Immediately Invoked Function Expression -> Expressão de função imediatamente invocada</p>
+
+    <p>IIFE + Namespaces são a base da organização de código antes de import/export.</p>
+
+    <p>Antes de existir let, const e modules, tudo era var (escopo global ou de função). Então IIFE era usada para
+        evitar poluir o escopo global.</p>
 
     <script>
         // function alerta() {
@@ -573,7 +576,9 @@
         // (function(){
         //     alert('Olá!');
         // })
+    </script>
 
+    <script>
         // var dados = (function() {
         //     var contador = 0;
         //     return {
@@ -588,14 +593,353 @@
         // console.log(dados.contador);
     </script>
 
+    <p>
+        O que está acontecendo? <br>
+
+        A IIFE executa imediatamente. <br>
+
+        Cria variável privada contador. <br>
+
+        Retorna um objeto. <br>
+
+        Esse objeto é armazenado em dados.
+    </p>
+
+    <script>
+        // console.log(dados.incrementar()); // 1
+        // console.log(dados.incrementar()); // 2
+
+        // console.log(dados.contador); // undefined
+    </script>
+
+    <p>Porque contador está no escopo interno da função.</p>
+
+    <p>Isso é: <br>
+
+        👉 Encapsulamento <br>
+        👉 Closure <br>
+        👉 Variável privada
+    </p>
+
     <p>uma função criada dentro de um objeto é um metodo</p>
 
     <p>contador esta como uma variavel privada</p>
 
-    <p>namespaces - caso de importação de um biblioteca que ja tenha a função importar, não tem porblema se a função
-        estiver no escopo de bloco</p>
+    <p>Namespace evita conflito porque organiza funções dentro de um objeto específico, não porque está em escopo de
+        bloco. Escopo de bloco não impede conflito global se algo for exportado ou declarado globalmente.</p>
 
-    <script src="script.js"></script>
+    <hr>
+
+    <h2>Módulos</h2>
+
+    <p>arquivos index.js e utilitarios.js</p>
+
+    <hr>
+
+    <h2>Fila de eventos e Pilha de eventos</h2>
+
+    <p>JS é uma linguagem assíncrona e Single Thread</p>
+
+    <p>Single Thread -> Ele executa uma coisa por vez e Possui uma única Call Stack (Pilha de Execução)</p>
+
+    <p>
+        Call Stack (Pilha de Eventos) -> Funciona como uma pilha de pratos. Último que entra é o primeiro que sai (LIFO)
+    </p>
+
+    <p>
+        Event Queue (Fila de Eventos) -> É onde ficam as tarefas assíncronas esperando para executar.
+        <br>
+        Funciona como fila de banco: Primeiro que entra é o primeiro que sai (FIFO)
+    </p>
+
+    <p>
+        Event Loop <br>
+        Verifica se a Call Stack está vazia
+        <br>
+        Se estiver vazia, pega algo da Event Queue
+        <br>
+        Coloca na Call Stack
+        <br>
+        Ele fica fazendo isso o tempo todo.
+    </p>
+
+    <p>
+        Assincrono - callback ou promisses
+    </p>
+
+    <p>event loop</p>
+
+    <p>event queue</p>
+
+    <script>
+        // function loopEventos() {
+        //     console.log('a');
+        //     for (let i = 1; i <= 4; i++) {
+        //         console.log('b - ' + i);
+        //     }
+        //     console.log('c');
+        //     setTimeout(() => {
+        //         console.log('d');
+        //     }, 0);
+        //     console.log('e');
+        // }
+
+        // loopEventos();
+    </script>
+
+    <p>
+        setTimeout(..., 0) -> Mesmo com 0 milissegundos. A função NÃO vai direto para a Call Stack. Ela vai para a Web
+        API (ambiente do navegador). Depois é enviada para a Event Queue. <br>
+        Ela só executa quando Call Stack estiver vazia e Event Loop pegar da fila
+    </p>
+
+    <p>
+        Microtasks vs Macrotasks (nível mais profundo)
+    </p>
+
+    <p>Macrotask Queue
+        (setTimeout,
+        setInterval,
+        setImmediate,
+        eventos DOM)</p>
+
+    <p>
+        Microtask Queue
+        (Promise.then,
+        async/await,
+        queueMicrotask)
+    </p>
+
+    <p>Microtasks têm prioridade.</p>
+
+    <hr>
+
+    <h2>SetTimeOut, SetInterval, requestAnimationFrame</h2>
+
+    <p>
+        setTimeout -> Executa uma função uma única vez depois de um tempo mínimo. (Ele entra na Macrotask Queue e Só
+        executa quando a Call Stack estiver vazia.)
+    </p>
+
+    <p>
+        setInterval -> Executa repetidamente.
+    </p>
+
+    <p>Ele não espera a execução terminar. Se o callback demorar mais que o intervalo Pode acumular execução e Pode
+        gerar bug ou travamento</p>
+
+    <p>
+        requestAnimationFrame -> Ele é feito para animação. Executa a função antes da próxima repaint do navegador. 60
+        vezes por segundo (60fps)
+    </p>
+
+    <script>
+        // setTimeout(() => {
+        //     alert("SetTimeOut");
+        // }, 2000);
+
+        // const mostraAlerta = () => {
+        //     alert("SetTimeOut");
+        // };
+        // setTimeout(mostraAlerta, 2000);
+
+        // const mostraAlertaNome = (nome) => {
+        //     alert("SetTimeOut - " + nome);
+        // };
+        // setTimeout(mostraAlertaNome, 2000, "Amanda");
+
+        // const mostraAlertaNome = (nome) => {
+        //     alert("SetTimeOut - " + nome);
+        // };
+        // setTimeout(mostraAlertaNome, 2000, "Amanda");
+
+        // const timeout = setTimeout(mostraAlertaNome, 3500, "Amanda");
+
+        // setTimeout(() => {
+        //     clearTimeout(timeout);
+        // }, 1500);
+    </script>
+
+    <script>
+        // const interval = setInterval(() => {
+        //     console.log("Teste");
+        // }, 1000);
+
+        // setInterval(() => {
+        //     clearInterval(interval);
+        // }, 5000);
+    </script>
+
+    <script>
+        // let contador = 0;
+
+        // function animation() {
+        //     contador += 1;
+        //     console.log(contador);
+        //     loop = requestAnimationFrame(animation);
+        // }
+
+        // var loop = requestAnimationFrame(animation);
+        // setTimeout(() => {
+        //     cancelAnimationFrame(loop);
+        // }, 5000);
+    </script>
+
+    <hr>
+
+    <h2>Operadores Bitwise</h2>
+
+    <script>
+        console.log(Number(113).toString(2));
+        console.log(parseInt('1110001', 2))
+    </script>
+
+    <hr>
+
+    <h2>DOM e Árvore de Layout</h2>
+
+    <p>O DOM é a representação do seu HTML em forma de árvore de objetos.</p>
+
+    <p>Cada elemento vira um nó (node).</p>
+
+    <p>Você não está mexendo no HTML diretamente.
+        Você está mexendo na árvore DOM em memória.</p>
+
+    <p>o DOM permite: Selecionar elementos, Alterar conteúdo,
+        Alterar atributos, Criar e remover elementos e Adicionar eventos</p>
+
+    <hr>
+
+    <h2>Factories</h2>
+
+    <p>Uma função que cria e retorna objetos.</p>
+
+    <script>
+        // const Mamifero = function(nome, som) {
+        //     return { nome, som};
+        // }
+
+        // const cachorro = Mamifero('cachorro', 'auau');
+        // console.log(cachorro);
+    </script>
+
+    <p>Ela fabrica objetos dinamicamente.</p>
+
+    <p>Isso acontece por causa do shorthand property</p>
+
+    <p>Porque ela fabrica instâncias sob demanda, igual uma fábrica.</p>
+
+    <p>Constructor Function (forma antiga)</p>
+
+    <script>
+        // function Mamifero(nome, som) {
+        //     this.nome = nome;
+        //     this.som = som;
+        // }
+        // const cachorro = new Mamifero('cachorro', 'auau');
+    </script>
+
+    <p>Precisa usar new.</p>]
+
+    <p>Factory Function</p>
+
+    <p>Mais simples.
+        Sem new.
+        Sem this.</p>
+
+    <p>Código mais limpo <br>
+        ✔ Menos bugs com this<br>
+        ✔ Mais previsível<br>
+        ✔ Combina muito bem com funções puras</p>
+
+    <p>Factories podem retornar métodos também:</p>
+
+    <script>
+        // function mamifero(nome, som) {
+        //     return {
+        //         nome,
+        //         som,
+        //         falar() {
+        //             console.log(som);
+        //         }
+        //     };
+        // }
+
+        // const cachorro = mamifero('cachorro', 'auau');
+        // cachorro.falar(); // auau
+    </script>
+
+    <p>
+        Encapsulamento com Factory (parte poderosa) -> Você pode criar dados privados
+    </p>
+
+    <script>
+        // function contador() {
+        //     let count = 0;
+
+        //     return {
+        //         incrementar() {
+        //             count++;
+        //             console.log(count);
+        //         }
+        //     };
+        // }
+
+        // const c = contador();
+        // c.incrementar(); // 1
+        // c.incrementar(); // 2
+    </script>
+
+    <p>Não existe acesso direto a count, Ele fica protegido dentro do escopo</p>
+
+    <p>Isso é possível por causa de closures.</p>
+
+    <hr>
+
+    <h2>Classes</h2>
+
+    <script>
+        // class Animal {
+        //     constructor(pes) {
+        //         this.pes = pes;
+        //     }
+
+        //     quantidadePes() {
+        //         console.log("Eu tenho " + this.pes + " pés/patas.");
+        //     }
+        // }
+        // class Mamifero extends Animal {
+        //     constructor(nome, som, pes) {
+        //         super(pes);
+        //         this.nome = nome;
+        //         this.som = som;
+        //     }
+
+        //     emitirSom() {
+        //         console.log("Esse animal faz " + this.som);
+        //     }
+        // }
+
+        // const cachorro = new Mamifero('cachorro', 'auau', 4);
+        // cachorro.emitirSom();
+        // cachorro.quantidadePes();
+    </script>
+
+    <p>class no JavaScript é açúcar sintático sobre o sistema de protótipos.</p>
+
+    <p>Ele parece orientação a objeto tradicional (Java, C#),
+        mas por baixo continua sendo prototype chain.</p>
+
+    <p>Conceitos importantes que você já está usando <br>
+
+        ✔ Herança <br>
+        ✔ Encapsulamento básico <br>
+        ✔ Prototype chain <br>
+        ✔ super() <br>
+        ✔ extends <br>
+
+        Isso já é nível intermediário real.</p>
+
 </body>
 
 </html>
